@@ -1,0 +1,64 @@
+Important things to remember 
+
+-DO NOT PUSH TO THE DEFAULT (main) DIRECTORY
+-PUSH TO YOUR DIRECTORY AND THEN MERGE
+
+
+
+- Three important locations here.
+	-Working directory (where you save your file) 		[local machine]
+	-Local repo	   (where git creates a snapshot) 	[local machine]
+
+	-Remote repo	   (origin or github url)			[remote server]
+
+
+
+-git clone 	=> Clones the content of the remote repo to working directory.
+
+-git commit 	=> Copies the content of your working directory to the local repository.
+
+	git commit -m "message" => -m adds a message feature. 
+
+-git push	=> This uploads your local commits to the remote repository.
+
+-git pull 	=> Copies files from remote repository to local machine. This does the job of both fetch + merge commands.
+
+-git fetch 	=> Copies files from remote repository to local repo.
+
+-git merge 	=> Copies files from one branch into another.
+
+-git rebase 	=> rebase merges your current branch upstream into the main branch, permanently merging into it. (DO NOT USE THIS.)
+
+-git switch 	=> switch between branches.
+
+-git push origin --delete <branch-name> => deletes remote branch.
+-git branch --delete <branch-name>
+
+-git push --set-upstream origin/<branchname>  => do this so that you understand what upstream and downstream is.
+
+-git remote remove origin
+
+
++++ If using the terminal or cmd +++
+
+Change the path to your working directory using cd command. (change directory)
+
+---This is the order that I followed:
+
+>git init
+
+>git add .
+
+>git remote add origin https://github.com/jash218/Basic-Network-Monitoring/ 	# Paste your Url here
+
+>git remote --v 								# Displays the origin url as a string
+
+>git checkout -b Jash-branch  							# Creates new branch 
+
+!!! TRIPLE CAUTION !!!
+
+$$$ DO NOT PUSH BEFORE CHECKING WHICH BRANCH YOU ARE PUSHING TO! $$$
+
+
+>git push origin Jash-branch
+
