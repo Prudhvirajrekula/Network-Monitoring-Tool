@@ -60,5 +60,8 @@ Change the path to your working directory using cd command. (change directory)
 $$$ DO NOT PUSH BEFORE CHECKING WHICH BRANCH YOU ARE PUSHING TO! $$$
 
 
+>git commit
+
+
 >git push origin Jash-branch
 
