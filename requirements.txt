@@ -1,23 +1,42 @@
-# Core GUI (PyQt5 version)
+# Core GUI
 PyQt5==5.15.9
 PyQtWebEngine==5.15.6
 
-# Network Monitoring
+# Network Monitoring and Analysis
 psutil==5.9.5
 scapy==2.5.0
+ipaddress==1.0.23
+socket==0.1.0
+netifaces==0.11.0
 
-# Visualization
+# Visualization and Graphics
 matplotlib==3.8.0
-networkx
+networkx==3.1
 folium==0.14.0
 branca==0.7.0
+seaborn==0.12.2
 
-# Utilities
-requests==2.31.0
-ipaddress==1.0.23
+# Geolocation and Mapping
 geopy==2.4.1
 country-converter==0.7.4
-pywin32==306; sys_platform == 'win32'
 
-# Windows-specific (skip if not on Windows)
+# HTTP and API
+requests==2.31.0
+urllib3==2.0.4
+
+# Data Processing
+pandas==2.0.3
+numpy==1.24.3
+
+# System Utilities
+PyYAML==6.0.1
+python-dateutil==2.8.2
+
+# Windows-specific (automatically skipped on non-Windows platforms)
+pywin32==306; sys_platform == 'win32'
 pypiwin32==223; sys_platform == 'win32'
+wmi==1.5.1; sys_platform == 'win32'
+
+# Optional: Development and Testing
+# pytest==7.3.1
+# pylint==2.17.0
