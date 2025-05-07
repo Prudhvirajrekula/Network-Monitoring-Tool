@@ -46,4 +46,4 @@ def show_about(window):
     QMessageBox.information(window, "About", "Network Monitor Tool v1.0\nDeveloped with PyQt5.")
 
 def show_documentation(window):
-    QMessageBox.information(window, "Documentation", "Visit https://your-documentation-link.com for help.")
+    QMessageBox.information(window, "Documentation", "Visit https://github.com/jash218/Basic-Network-Monitoring/ for help.")
