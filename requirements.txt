@@ -1,0 +1,23 @@
+# Core GUI (PyQt5 version)
+PyQt5==5.15.9
+PyQtWebEngine==5.15.6
+
+# Network Monitoring
+psutil==5.9.5
+scapy==2.5.0
+
+# Visualization
+matplotlib==3.8.0
+networkx
+folium==0.14.0
+branca==0.7.0
+
+# Utilities
+requests==2.31.0
+ipaddress==1.0.23
+geopy==2.4.1
+country-converter==0.7.4
+pywin32==306; sys_platform == 'win32'
+
+# Windows-specific (skip if not on Windows)
+pypiwin32==223; sys_platform == 'win32'
