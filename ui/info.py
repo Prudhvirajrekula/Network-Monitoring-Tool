@@ -22,7 +22,7 @@ def setup_info_page(layout, dark_mode=False):
     layout.addWidget(styled_label(f"<b style='color: {text_color};'>App Name:</b> Network Monitoring & Port Scanning Tool"))
     layout.addWidget(styled_label(f"<b style='color: {text_color};'>Version:</b> 1.0.3"))
     layout.addWidget(styled_label(f"<b style='color: {text_color};'>Last Updated:</b> May 1, 2025"))
-    layout.addWidget(styled_label(f"<b style='color: {text_color};'>Developer:</b> Network Utilities Team"))
+    layout.addWidget(styled_label(f"<b style='color: {text_color};'>Developer:</b> Jash, Jay, Prudhviraj, Madhu (Capstone Project 2025)"))
     layout.addWidget(styled_label(f"<b style='color: {text_color};'>License:</b> MIT License"))
     layout.addWidget(styled_label(f"<b style='color: {text_color};'>Technologies Used:</b><br>"
                                  f"• Python 3<br>"
