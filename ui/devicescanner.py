@@ -1,6 +1,5 @@
 from PyQt5.QtWidgets import (
-    QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, 
-    QTableWidget, QTableWidgetItem, QHeaderView
+    QWidget, QVBoxLayout, QLabel, QTableWidget, QTableWidgetItem, QHeaderView
 )
 from PyQt5.QtCore import Qt
 from core.backend import get_network_devices
@@ -16,70 +15,61 @@ class DeviceScanner(QWidget):
         layout = QVBoxLayout(self)
         
         # Header
-        header = QLabel("<h2>Connected Network Devices</h2>")
+        header = QLabel("<h2>Connected Network Devices (IPv4 Only)</h2>")
         layout.addWidget(header)
         
         # Device table
         self.device_table = QTableWidget()
         self.device_table.setColumnCount(4)
-        self.device_table.setHorizontalHeaderLabels(["Device Name", "IP Address", "MAC Address", "Network Adapter Company"])
-        self.device_table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        self.device_table.setHorizontalHeaderLabels([
+            "Device Name", "IP Address", "MAC Address", "Network Adapter Company"
+        ])
+        self.device_table.horizontalHeader().setSectionResizeMode(
+            QHeaderView.ResizeMode.Stretch
+        )
         layout.addWidget(self.device_table)
         
-        # Controls
-        control_layout = QHBoxLayout()
-        self.refresh_button = QPushButton("Refresh")
-        self.refresh_button.clicked.connect(self.scan_devices)
-        self.close_button = QPushButton("Close")
-        self.close_button.clicked.connect(self.close)
-        
-        control_layout.addWidget(self.refresh_button)
-        control_layout.addWidget(self.close_button)
-        control_layout.addStretch()
-        
-        layout.addLayout(control_layout)
-        
-        # Set the theme
+        # Apply theme
         self.apply_theme()
         
-        # Scan for devices
+        # Initial scan
         self.scan_devices()
     
     def scan_devices(self):
-        """Scan the network for connected devices."""
-        # Get devices from backend
+        """Scan the network for connected IPv4 devices and populate the table."""
         devices = get_network_devices()
+        # Filter out any entries whose IP contains ':' (i.e. IPv6)
+        ipv4_devices = [
+            d for d in devices
+            if 'ip' in d and isinstance(d['ip'], str) and ':' not in d['ip']
+        ]
         
-        # Update the table
-        self.device_table.setRowCount(len(devices))
+        self.device_table.setRowCount(len(ipv4_devices))
         
-        for row, device in enumerate(devices):
-            self.device_table.setItem(row, 0, QTableWidgetItem(device['name']))
-            self.device_table.setItem(row, 1, QTableWidgetItem(device['ip']))
-            self.device_table.setItem(row, 2, QTableWidgetItem(device['mac']))
-            self.device_table.setItem(row, 3, QTableWidgetItem(device['manufacturer']))
+        for row, device in enumerate(ipv4_devices):
+            # Safely get each field, defaulting to 'Unknown' if missing
+            name = device.get('name', 'Unknown')
+            ip   = device.get('ip', 'Unknown')
+            mac  = device.get('mac', 'Unknown')
+            mfr  = device.get('manufacturer', 'Unknown')
+            
+            self.device_table.setItem(row, 0, QTableWidgetItem(name))
+            self.device_table.setItem(row, 1, QTableWidgetItem(ip))
+            self.device_table.setItem(row, 2, QTableWidgetItem(mac))
+            self.device_table.setItem(row, 3, QTableWidgetItem(mfr))
     
     def set_dark_mode(self, enabled):
-        """Set dark mode on or off."""
+        """Enable or disable dark mode theme."""
         self.dark_mode = enabled
         self.apply_theme()
     
     def apply_theme(self):
-        """Apply the current theme."""
+        """Apply the current light or dark theme to the widget."""
         if self.dark_mode:
             self.setStyleSheet("""
                 QWidget {
                     background-color: #2c3e50;
                     color: white;
-                }
-                QPushButton {
-                    background-color: #1abc9c;
-                    color: white;
-                    border: none;
-                    padding: 6px 12px;
-                }
-                QPushButton:hover {
-                    background-color: #16a085;
                 }
                 QTableWidget {
                     background-color: #34495e;
@@ -103,15 +93,6 @@ class DeviceScanner(QWidget):
                     background-color: #ecf0f1;
                     color: black;
                 }
-                QPushButton {
-                    background-color: #3498db;
-                    color: white;
-                    border: none;
-                    padding: 6px 12px;
-                }
-                QPushButton:hover {
-                    background-color: #2980b9;
-                }
                 QTableWidget {
                     background-color: white;
                     color: black;
@@ -121,6 +102,10 @@ class DeviceScanner(QWidget):
                 QHeaderView::section {
                     background-color: #dfe6e9;
                     color: black;
+                    border: 1px solid #bdc3c7;
+                }
+                QTableCornerButton::section {
+                    background-color: #dfe6e9;
                     border: 1px solid #bdc3c7;
                 }
             """)
