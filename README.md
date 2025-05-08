@@ -1,4 +1,4 @@
-# Basic Network Monitoring
+# Network Port Monitoring
 
 A comprehensive network monitoring and security tool that detects open ports and their associated processes. It provides a feature-rich GUI for real-time monitoring, visualization, and management of network activities.
 
@@ -24,8 +24,8 @@ A comprehensive network monitoring and security tool that detects open ports and
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/jash218/Basic-Network-Monitoring.git
-   cd Basic-Network-Monitoring
+   git clone https://github.com/Prudhvirajrekula/Network-Port-Monitoring-Tool.git
+   cd Network-Port-Monitoring-Tool
    ```
 
 2. Install the required packages:
