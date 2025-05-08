@@ -15,7 +15,7 @@ A comprehensive network monitoring and security tool that detects open ports and
 
 ## Requirements
 
-- Python 3.11+
+- Python 3.10+
 - PyQt5
 - psutil
 - Additional packages (see requirements.txt)
